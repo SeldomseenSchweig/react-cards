@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import Card from "./Card";
+import IntervalCard from "./IntervalCard";
 
 const Deck = () => {
     // create a new deck
@@ -12,7 +13,6 @@ const Deck = () => {
 
         async function newDeck(){
             const res = await axios.get(api)
-            console.log("Deck Id is:",res.data.deck_id)
 
             setDeck(res.data.deck_id) 
             
@@ -28,8 +28,8 @@ const Deck = () => {
     return (
 
         <div>
-            <h1> {deck}</h1>
             <Card deckId={deck} />
+            <IntervalCard deckId={deck}/>
             
         </div>
     )
