@@ -8,6 +8,8 @@ import axios from 'axios'
 const IntervalCard = ({deckId}) => {
     const [card,setCard] = useState('')
     const [numCard,setNumCard] = useState(0)
+
+
     async function  draw(){
         const res = await axios.get(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`)
         setCard(res.data.cards[0].image )
@@ -16,16 +18,13 @@ const IntervalCard = ({deckId}) => {
 
     }
 
-
-
     function intervalDraw(){
-
-       
-            
-                setInterval( ()=>{
-                    draw()
-                }, 1000)
-
+        useEffect(()=>{
+            const intId = setInterval( ()=>{
+                draw()
+            }, 1000)
+            return () => clearInterval(intId)
+        }, [])
 
             }
 
