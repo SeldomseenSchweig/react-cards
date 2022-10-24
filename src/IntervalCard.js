@@ -18,16 +18,18 @@ const IntervalCard = ({deckId}) => {
 
 
 
-    async function intervalDraw(){
+    function intervalDraw(){
 
-        const intervalId = setInterval( ()=>{
-            draw()
+       
+            
+                setInterval( ()=>{
+                    draw()
+                }, 1000)
 
-        }, 1000)
-        return () => clearInterval(intervalId)
 
+            }
 
-    }
+    
 
  
 
