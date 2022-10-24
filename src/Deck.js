@@ -4,7 +4,7 @@ import Card from "./Card";
 
 const Deck = () => {
     // create a new deck
-    const [deck, setDeck]= useState('');
+    const [deck, setDeck]= useState(null);
     const api = `https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`
    
 
@@ -13,15 +13,13 @@ const Deck = () => {
         async function newDeck(){
             const res = await axios.get(api)
             setDeck(res.data.deck_id) 
+            console.log("Deck Id is:",deck)
         }
         newDeck();
-        console.log(deck)
 
-
-
-    }, [deck])
+    }, [])
     
-
+    
 
 
 

@@ -15,7 +15,6 @@ const Card = ({deck_id}) => {
     return (
         <div>
             <button onClick={drawCard}> Draw</button>
-
             <p>{card}</p>
         </div>
     )
