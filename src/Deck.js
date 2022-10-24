@@ -12,8 +12,10 @@ const Deck = () => {
 
         async function newDeck(){
             const res = await axios.get(api)
+            console.log("Deck Id is:",res.data.deck_id)
+
             setDeck(res.data.deck_id) 
-            console.log("Deck Id is:",deck)
+            
         }
         newDeck();
 
@@ -26,6 +28,7 @@ const Deck = () => {
     return (
 
         <div>
+            <h1> {deck}</h1>
             <Card deckId={deck} />
             
         </div>

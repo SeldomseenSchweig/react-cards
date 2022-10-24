@@ -2,20 +2,28 @@ import React, {useState} from "react";
 import axios from 'axios'
 
 
-const Card = ({deck_id}) => {
+const Card = ({deckId}) => {
     const [card,setCard] = useState('')
+    const [numCard,setNumCard] = useState(0)
+
+    console.log(deckId)
 
         async function drawCard(){
             
          
-                const res = await axios.get(`https://deckofcardsapi.com/api/deck/${deck_id}/draw/?count=1`)
-                setCard(res.data.cards[1].value )
+                const res = await axios.get(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=1`)
+                setCard(res.data.cards[0].image )
+                setNumCard(numCard + 1)
+                console.log(res.data)
 
     }
     return (
         <div>
-            <button onClick={drawCard}> Draw</button>
-            <p>{card}</p>
+            {numCard !== 52 && <button onClick={drawCard}> Draw</button>}
+            {numCard == 52 && <button onClick={()=> alert("Error: no more cards")} > No More Cards!</button>}
+            <h1>Number of Cards left:{52-numCard}</h1>
+            <img  src={card} />
+            
         </div>
     )
 }
